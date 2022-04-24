@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-800 text-gray-300;
+  }
+}
+  
+@layer components{
+  .headerInput{
+    @apply placeholder-white   w-full sm:w-96  text-gray-800 bg-gray-400 rounded-full opacity-40 pl-8 h-8   focus:bg-white focus:opacity-100 outline-none
+  }
+  .center{
+    @apply top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+  }
+}
