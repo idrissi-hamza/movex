@@ -1,13 +1,17 @@
 module.exports = {
-  content: ["./pages/**/*.{js,ts,jsx,tsx}",
-  "./components/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {
       backgroundImage: {
-        'hero-pattern':
-          "linear-gradient(to right top, rgba(25, 25,25 ,1) 0%, rgba(25, 25, 25,1) 10%,rgba(25, 25, 25,0) 90%, transparent),linear-gradient(to right, rgba(25, 25, 25,.8) 40%,transparent),linear-gradient(to top, rgba(0, 0, 0,.9) 0%, rgba(25, 25, 25,.6) 5%, transparent), url('/bg.jpg')",
+        "hero-pattern":
+          "linear-gradient(to right top, rgba(20, 20,20 ,1) 0%, rgba(20, 20, 20,1) 10%,rgba(20, 20, 20,0) 80%, transparent),linear-gradient(to right, rgba(20, 20, 20,.6) 30%,transparent),linear-gradient(to top, rgba(20,20, 20,.8) 0%, rgba(20, 20, 20,.2) 3%, transparent), url('/bg.jpg')",
+        "gradient-to-b":
+          "linear-gradient(to bottom,rgba(20,20,20,0) 0,rgba(20,20,20,.15) 15%,rgba(20,20,20,.35) 40%,rgba(20,20,20,.58) 55%,#141414 75%,#141414 100%);",
       },
     },
   },
   plugins: [],
-}
+};
