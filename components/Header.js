@@ -4,7 +4,7 @@ import { MenuIcon, SearchIcon } from "@heroicons/react/solid";
 const Header = () => {
   return (
     <header className="bg-neutral-900 h-12 m-2 rounded-md flex items-center pl-4 opacity-95 pr-5 md:pr-10">
-      <h1 className="text-xl text-white font-bold tracking-wide select-none cursor-pointer pb-[2px]  mr-4">
+      <h1 className="text-xl text-white font-bold tracking-wide select-none cursor-pointer pb-[2px] mr-4">
         MOVE<span className="text-yellow-300">X</span>
       </h1>
       <div className="relative flex-1 sm:flex-none mr-4 ">
