@@ -10,7 +10,7 @@ const Header = () => {
  
   const router = useRouter();
   return (
-    <header className="bg-neutral-900 h-12 m-2 rounded-md flex items-center pl-4 opacity-95 pr-5 md:pr-10">
+    <header className="bg-neutral-900 h-12 m-2 rounded-md flex items-center pl-4 opacity-95 pr-5 md:pr-8">
       <h1 className="text-xl text-white font-bold tracking-wide select-none cursor-pointer pb-[2px] mr-4">
         MOVE<span className="text-yellow-300">X</span>
       </h1>
@@ -24,14 +24,14 @@ const Header = () => {
         </label>
       </div>
       <nav className="ml-auto hidden md:flex ">
-        <ul className="flex space-x-3 font-bold last:mr-4 items-center">
+        <ul className="flex space-x-4 font-bold last:mr-4 items-center">
           <li>HOME</li>
           <li>CATEGORY</li>
-          {user && <li>WatchList</li>}
+          {/* {user && <li>WatchList</li>} */}
         </ul>
         {!user && (
           <button
-            className="ml-2 btn"
+            className="ml-4 btn"
             onClick={() => {
               router.push("/login");
             }}
@@ -40,7 +40,7 @@ const Header = () => {
           </button>
         )}
         {user && (
-          <button className="ml-2 btn" onClick={logout}>
+          <button className="ml-4 btn" onClick={logout}>
             Logout
           </button>
         )}
