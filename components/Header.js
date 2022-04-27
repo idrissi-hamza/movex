@@ -22,16 +22,16 @@ const router=useRouter()
           />
         </label>
       </div>
-      <nav className="ml-auto hidden md:flex">
-        <ul className="flex space-x-3 font-bold last:mr-4">
+      <nav className="ml-auto hidden md:flex ">
+        <ul className="flex space-x-3 font-bold last:mr-4 items-center">
           <li>HOME</li>
           <li>CATEGORY</li>
          {user && <li>WatchList</li>}
         </ul>
-        {!user && <button className="ml-2" onClick={()=>{router.push('/login')}}>
+        {!user && <button className="ml-2 btn" onClick={()=>{router.push('/login')}}>
           Sign In
         </button>}
-       {user && <button className="ml-2" onClick={logout}>
+       {user && <button className="ml-2 btn" onClick={logout}>
           Logout
         </button>}
       </nav>

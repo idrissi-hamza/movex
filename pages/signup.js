@@ -20,10 +20,10 @@ export default function Signup() {
 
   return (
     <div className="flex flex-col items-center mt-8 ">
-      <div to="/" className="flex justify-center items-end mb-4">
-        <span className="ml-2 font-semibold text-base text-gray-700 ">
-          Movex
-        </span>
+      <div className="flex justify-center items-end mb-4">
+      <h1 className="text-xl text-white font-bold tracking-wide select-none cursor-pointer pb-[2px] mr-4">
+        MOVE<span className="text-yellow-300">X</span>
+      </h1>
       </div>
       <form
         className=" h-[27rem] max-w-sm w-80  bg-white p-5 border shadow rounded text-slate-600"
@@ -62,10 +62,10 @@ export default function Signup() {
           />
         </label>
 
-        {false && <button>Loading ...</button>}
-        {true && <button>signup</button>}
+        {false && <button className="btn w-full">Loading ...</button>}
+        {true && <button className="btn w-full">signup</button >}
         {false && alert(error)}
-        <div className="pt-2 font-semibold text-sm hover:text-indigo-700 ">
+        <div className="pt-2 font-semibold text-sm hover:text-yellow-500 ">
           <Link href="/login">Already have an account?</Link>
         </div>
       </form>
