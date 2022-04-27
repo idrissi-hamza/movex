@@ -5,10 +5,12 @@ import requests from "../utils/requests";
 import Row from "../components/Row";
 import Plateforms from "../components/Plateforms";
 import Footer from "../components/Footer";
-
+import { useAuthContext } from "../hooks/useAuthContext";
 
 export default function Home({ trending, topRated }) {
+  const { authIsReady } = useAuthContext();
   return (
+    authIsReady && (
       <div className="  relative h-screen bg-gradient-to-b overflow-x-hidden">
         <Head>
           <title>Home - Movex</title>
@@ -32,8 +34,9 @@ export default function Home({ trending, topRated }) {
         </h1>
         <p className="mt-4 text-sm text-slate-500">Copyright © 2022 Movex</p>
       </footer> */}
-        <Footer/>
+        <Footer />
       </div>
+    )
   );
 }
 
