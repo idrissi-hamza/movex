@@ -2,11 +2,15 @@ import { useState, useEffect } from "react";
 import { projectAuth } from "../firebase/config";
 import { useAuthContext } from "../hooks/useAuthContext";
 
+import { useRouter } from "next/router";
+
 export const useSignup = () => {
   const [error, setError] = useState(null);
   const [isPending, setIsPending] = useState(false);
   const { dispatch } = useAuthContext();
   const [isCanceled, setIsCanceled] = useState(false);
+
+  const router = useRouter();
 
   const signup = async (email, password, displayName) => {
     setError(null);
@@ -27,6 +31,8 @@ export const useSignup = () => {
 
       // dispatch LOGIN action
       dispatch({ type: "LOGIN", payload: res.user });
+
+      router.push("/");
 
       if (!isCanceled) {
         setIsPending(false);

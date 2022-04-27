@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 import { useSignup } from "../hooks/useSignup";
 
-import { useRouter } from "next/router";
 import Link from "next/link";
 
 export default function Signup() {
@@ -10,12 +9,12 @@ export default function Signup() {
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
   const { signup, isPending, error } = useSignup();
-  const router = useRouter()
+ 
   const submitHandler = (e) => {
     e.preventDefault();
     signup(email, password, displayName);
     // console.log(email, password, displayName);
-    router.push('/')
+   
   };
 
   return (

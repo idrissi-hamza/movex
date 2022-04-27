@@ -3,18 +3,17 @@ import { useState } from "react";
 
 import { useLogin } from "../hooks/useLogin";
 
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 import Link from "next/link";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, error, isPending } = useLogin();
-  const router = useRouter();
-  const submitHandler = (e) => {
+  const submitHandler =  (e) => {
     e.preventDefault();
     login(email, password);
-    router.push("/");
+   
   };
 
   return (
@@ -42,6 +41,7 @@ export default function Login() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
+              required
             />
           </label>
 
@@ -52,6 +52,7 @@ export default function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
+              required
             />
           </label>
 
