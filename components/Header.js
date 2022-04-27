@@ -7,7 +7,8 @@ import { useRouter } from "next/router";
 const Header = () => {
   const { logout } = useLogout();
   const { user } = useAuthContext();
-const router=useRouter()
+ 
+  const router = useRouter();
   return (
     <header className="bg-neutral-900 h-12 m-2 rounded-md flex items-center pl-4 opacity-95 pr-5 md:pr-10">
       <h1 className="text-xl text-white font-bold tracking-wide select-none cursor-pointer pb-[2px] mr-4">
@@ -26,14 +27,23 @@ const router=useRouter()
         <ul className="flex space-x-3 font-bold last:mr-4 items-center">
           <li>HOME</li>
           <li>CATEGORY</li>
-         {user && <li>WatchList</li>}
+          {user && <li>WatchList</li>}
         </ul>
-        {!user && <button className="ml-2 btn" onClick={()=>{router.push('/login')}}>
-          Sign In
-        </button>}
-       {user && <button className="ml-2 btn" onClick={logout}>
-          Logout
-        </button>}
+        {!user && (
+          <button
+            className="ml-2 btn"
+            onClick={() => {
+              router.push("/login");
+            }}
+          >
+            Sign In
+          </button>
+        )}
+        {user && (
+          <button className="ml-2 btn" onClick={logout}>
+            Logout
+          </button>
+        )}
       </nav>
 
       <MenuIcon className="w-8 h-8  mx-2 ml-auto block md:hidden " />

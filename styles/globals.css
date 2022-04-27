@@ -17,6 +17,6 @@
   }
 
   .btn {
-    @apply bg-yellow-400 px-2 py-1  text-yellow-50 font-semibold rounded hover:bg-yellow-500;
+    @apply bg-yellow-400 px-2 py-1  text-yellow-900 font-semibold rounded hover:bg-yellow-500;
   }
 }

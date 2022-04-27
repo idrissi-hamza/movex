@@ -6,8 +6,11 @@ import Row from "../components/Row";
 import Plateforms from "../components/Plateforms";
 import Footer from "../components/Footer";
 import { useAuthContext } from "../hooks/useAuthContext";
+import Modal from "../components/Modal";
+import { useCtrlContext } from "../hooks/useCtrlContext";
 
 export default function Home({ trending, topRated }) {
+  const {showModal}=useCtrlContext()
   const { authIsReady } = useAuthContext();
   return (
     authIsReady && (
@@ -35,6 +38,7 @@ export default function Home({ trending, topRated }) {
         <p className="mt-4 text-sm text-slate-500">Copyright © 2022 Movex</p>
       </footer> */}
         <Footer />
+        {showModal && <Modal/>}
       </div>
     )
   );
