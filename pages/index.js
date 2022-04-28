@@ -10,7 +10,7 @@ import Modal from "../components/Modal";
 import { useCtrlContext } from "../hooks/useCtrlContext";
 
 export default function Home({ trending, topRated }) {
-  const {showModal}=useCtrlContext()
+  const { showModal } = useCtrlContext();
   const { authIsReady } = useAuthContext();
   return (
     authIsReady && (
@@ -26,19 +26,13 @@ export default function Home({ trending, topRated }) {
           <section className=" flex flex-col space-y-2   mt-[50vh] xl:mt-[60vh] left-8 sm:left">
             <Row title="Trending" results={trending} />
             <Row title="Top Rated" results={topRated} />
-            {/* <Row title="Trending" results={trending} /> */}
           </section>
         </main>
 
         <Plateforms />
-        {/* <footer className="h-[20vh] px-20 sm:px-36 xl:px-53 pt-4 ">
-        <h1 className=" text-3xl text-white font-bold tracking-wide select-none cursor-pointer pb-[2px] mr-4">
-          MOVE<span className="text-yellow-300">X</span>
-        </h1>
-        <p className="mt-4 text-sm text-slate-500">Copyright © 2022 Movex</p>
-      </footer> */}
+       
         <Footer />
-        {showModal && <Modal/>}
+        {showModal && <Modal />}
       </div>
     )
   );
@@ -46,10 +40,10 @@ export default function Home({ trending, topRated }) {
 
 export const getServerSideProps = async () => {
   //
-  const trendingData = await fetch(requests.fetchTrending).then((res) =>
+  const trendingData = await fetch(requests.fetchTrending.url).then((res) =>
     res.json()
   );
-  const topRatedData = await fetch(requests.fetchTopRated).then((res) =>
+  const topRatedData = await fetch(requests.fetchTopRated.url).then((res) =>
     res.json()
   );
 

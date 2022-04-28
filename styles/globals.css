@@ -19,4 +19,7 @@
   .btn {
     @apply bg-yellow-400 px-2 py-1  text-yellow-900 font-semibold rounded hover:bg-yellow-500;
   }
+  .navBtn{
+    @apply cursor-pointer transition duration-100 transform hover:scale-105 hover:text-white active:text-yellow-500;
+  }
 }

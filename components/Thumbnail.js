@@ -4,9 +4,6 @@ import Image from "next/image";
 import { useCtrlContext } from "../hooks/useCtrlContext";
 
 const Thumbnail = ({ movie }) => {
-  // console.log(result);
-  // const { dispatch } = useCtrlContext()
-  // const handleOpen = () => dispatch({ type: "MODAL",payload:true });
   const { dispatch } = useCtrlContext();
   const handleclick = () => {
     dispatch({ type: "MODAL", payload: true });
