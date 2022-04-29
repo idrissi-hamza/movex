@@ -15,6 +15,7 @@ const Modal = () => {
             layout=""
             width={200}
             height={300}
+            alt='movie poster'
           />
         </div>
         <div className="text-gray-800 col-span-2 p-2  space-y-2">

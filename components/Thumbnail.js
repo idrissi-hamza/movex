@@ -20,6 +20,7 @@ const Thumbnail = ({ movie }) => {
         }`}
         className="rounded-sm object-cover md:rounded"
         layout="fill"
+        alt='movie img'
       />
     </div>
   );

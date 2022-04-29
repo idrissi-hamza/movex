@@ -32,7 +32,7 @@ const Search = () => {
     };
     fetchData(); 
     console.log(movies);
-  }, [query]);
+  }, [query,movies]);
 
   return (
     query && (
