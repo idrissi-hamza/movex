@@ -31,7 +31,7 @@ const Header = () => {
     const movies = await res.json();
     router.push(`/search/movie?query=${searchTerm}`);
     setSearchTerm("");
-    dispatch({ type: "SEARCHED_MOVIES",payload:movies});
+    dispatch({ type: "SEARCHED_MOVIES",payload:{movies:movies.results,  searchTerm}});
     // console.log(movies);
   };
   return (

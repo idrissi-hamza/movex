@@ -9,7 +9,7 @@ export const CtrlReducer = (state, action) => {
     case "PICK_MOVIE":
       return { ...state, movie: action.payload };
     case "SEARCHED_MOVIES":
-      return { ...state, searchedMovies: action.payload };
+      return { ...state, searchedData: action.payload };
     default:
       return state;
   }
