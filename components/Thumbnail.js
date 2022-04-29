@@ -5,7 +5,6 @@ import { useCtrlContext } from "../hooks/useCtrlContext";
 
 const Thumbnail = ({ movie }) => {
   const { dispatch } = useCtrlContext();
-import { useCtrlContext } from "../hooks/useCtrlContext";
   const handleclick = () => {
     dispatch({ type: "MODAL", payload: true });
     dispatch({ type: "PICK_MOVIE",payload:movie });
