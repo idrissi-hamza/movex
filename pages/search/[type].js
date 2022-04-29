@@ -6,11 +6,36 @@ import Modal from "../../components/Modal";
 import Results from "../../components/Results";
 import { useCtrlContext } from "../../hooks/useCtrlContext";
 
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import getConfig from "next/config";
+import { useState } from "react";
+
+const { publicRuntimeConfig } = getConfig();
+
 const Search = () => {
-  const { searchedData, showModal } = useCtrlContext();
+  const { showModal } = useCtrlContext();
+  const [movies, setMovies] = useState([]);
+  const router = useRouter();
+  // const [query, setQuery] = useState("");
+ 
+  // console.log(query);
+  const { query } = router.query;
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/search/movie?api_key=${publicRuntimeConfig.apiKey}&language=en-US&query=${query}&page=1&include_adult=false`
+      );
+      const data = await response.json();
+      setMovies(data.results);
+      // setQuery(query);
+    };
+    fetchData(); 
+    console.log(movies);
+  }, [query]);
 
   return (
-    searchedData && (
+    query && (
       <>
         <div className="h-screen">
           <Head>
@@ -22,9 +47,9 @@ const Search = () => {
           <div className=" flex flex-col my-4 mx-2 ">
             {/* <pre>{JSON.stringify(searchedMovies,null,2)}</pre> */}
             <div className="bg-neutral-900/70 rounded-lg w-full h-10 pl-10 pt-2">
-              Results for : {searchedData.searchTerm}
+              Results for : {query}
             </div>
-            <Results results={searchedData.movies} />
+            <Results results={movies} />
           </div>
           <Footer />
         </div>

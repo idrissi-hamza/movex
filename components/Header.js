@@ -21,17 +21,18 @@ const Header = () => {
   };
 
 
-  const { dispatch } = useCtrlContext();
+  // const { dispatch } = useCtrlContext();
 
-  const search = async (e) => {
+  // const search = async (e) => {
+  const search = (e) => {
     e.preventDefault();
-    const res = await fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=${publicRuntimeConfig.apiKey}&language=en-US&query=${searchTerm}&page=1&include_adult=false`
-    );
-    const movies = await res.json();
+    // const res = await fetch(
+    //   `https://api.themoviedb.org/3/search/movie?api_key=${publicRuntimeConfig.apiKey}&language=en-US&query=${searchTerm}&page=1&include_adult=false`
+    // );
+    // const movies = await res.json();
     router.push(`/search/movie?query=${searchTerm}`);
     setSearchTerm("");
-    dispatch({ type: "SEARCHED_MOVIES",payload:{movies:movies.results,  searchTerm}});
+    // dispatch({ type: "SEARCHED_MOVIES",payload:{movies:movies.results,  searchTerm}});
     // console.log(movies);
   };
   return (
