@@ -5,9 +5,11 @@ export const CtrlContext = createContext();
 export const CtrlReducer = (state, action) => {
   switch (action.type) {
     case "MODAL":
-      return { ...state, showModal:action.payload };
-      case "PICK_MOVIE":
-        return { ...state, movie:action.payload };
+      return { ...state, showModal: action.payload };
+    case "PICK_MOVIE":
+      return { ...state, movie: action.payload };
+    case "SEARCHED_MOVIES":
+      return { ...state, searchedMovies: action.payload };
     default:
       return state;
   }
@@ -16,7 +18,7 @@ export const CtrlReducer = (state, action) => {
 export const CtrlContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(CtrlReducer, {
     showModal: false,
-    movie:null
+    movie: null,
   });
 
   return (
