@@ -1,5 +1,5 @@
 import React from "react";
-import SingleResult from "./singleResult";
+import SingleResult from "./SingleResult";
 
 const Results = ({ results }) => {
   return (
