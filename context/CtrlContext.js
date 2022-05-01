@@ -8,9 +8,7 @@ export const CtrlReducer = (state, action) => {
       return { ...state, showModal: action.payload };
     case "PICK_MOVIE":
       return { ...state, movie: action.payload };
-    case "SEARCHED_MOVIES":
-      return { ...state, searchedData: action.payload };
-    default:
+     default:
       return state;
   }
 };
