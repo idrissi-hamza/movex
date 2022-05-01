@@ -6,17 +6,18 @@ import { useCtrlContext } from "../hooks/useCtrlContext";
 const SingleResult = ({ result }) => {
   const BASE_URL = "https://image.tmdb.org/t/p/original/";
   const { dispatch } = useCtrlContext();
-  const handleclick = () => {
+  const handleClick = () => {
     dispatch({ type: "MODAL", payload: true });
     dispatch({ type: "PICK_MOVIE",payload:result });
   };
   return (
     <div
-      onClick={handleclick}
+      onClick={handleClick}
       className="p-2 group cursor-pointer transition duration-200  transform sm:hover:scale-105 "
     >
      
       <Image
+      className="relative"
         layout="responsive"
         src={`${BASE_URL}${result.backdrop_path || result.poster_path}`}
         width={1920}
@@ -34,6 +35,7 @@ const SingleResult = ({ result }) => {
           <ThumbUpIcon className="h-5 mx-2" /> {result.vote_count}
         </p>
       </div>
+      
     </div>
   );
 };

@@ -6,6 +6,6 @@ export const useCtrlContext = () => {
   if (!context) {
     throw Error("useCtrlContext must be used inside an CtrlContextProvider");
   }
-// console.log(context);
+console.log(context);
   return context;
 };

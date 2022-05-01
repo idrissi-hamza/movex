@@ -1,15 +1,25 @@
-import React from "react";
 import { MenuIcon, SearchIcon } from "@heroicons/react/solid";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useLogout } from "../hooks/useLogout";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-import getConfig from "next/config";
+import Popover from "@mui/material/Popover";
 import { useCtrlContext } from "../hooks/useCtrlContext";
-const { publicRuntimeConfig } = getConfig();
 
 const Header = () => {
+  //MUI POPOVER COMPONENT
+  const [anchorEl, setAnchorEl] = useState(null);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popover" : undefined;
+
   const { logout } = useLogout();
   const { user } = useAuthContext();
 
@@ -20,21 +30,14 @@ const Header = () => {
     setSearchTerm(e.target.value);
   };
 
-
-  // const { dispatch } = useCtrlContext();
-
-  // const search = async (e) => {
   const search = (e) => {
     e.preventDefault();
-    // const res = await fetch(
-    //   `https://api.themoviedb.org/3/search/movie?api_key=${publicRuntimeConfig.apiKey}&language=en-US&query=${searchTerm}&page=1&include_adult=false`
-    // );
-    // const movies = await res.json();
     router.push(`/search/movie?query=${searchTerm}`);
     setSearchTerm("");
-    // dispatch({ type: "SEARCHED_MOVIES",payload:{movies:movies.results,  searchTerm}});
-    // console.log(movies);
   };
+
+  const { watchList } = useCtrlContext();
+  console.log(watchList);
   return (
     <header className="bg-neutral-900/70 h-12 m-2 rounded-md flex items-center pl-4 pr-5 md:pr-8">
       <h1
@@ -64,7 +67,30 @@ const Header = () => {
           <li className=" navBtn" onClick={() => router.push("/discover")}>
             DISCOVER
           </li>
-          {/* {user && <li>WatchList</li>} */}
+          {user && (
+            <div>
+              <li
+                className="navBtn "
+                aria-describedby={id}
+                onClick={handleClick}
+              >
+                WATCHLIST
+              </li>
+              <Popover
+                id={id}
+                open={open}
+                anchorEl={anchorEl}
+                onClose={handleClose}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "left",
+                }}
+              >
+                <div className="mt-3"><><div>watch list movies</div>
+                <div>{watchList.map(movie=><p>{movie}</p>)}</div></></div>
+              </Popover>
+            </div>
+          )}
         </ul>
         {!user && (
           <button
