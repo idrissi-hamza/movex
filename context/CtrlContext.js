@@ -10,6 +10,13 @@ export const CtrlReducer = (state, action) => {
       return { ...state, movie: action.payload };
     case "ADD_TO_WATCHLIST":
       return { ...state, watchList: [...state.watchList, action.payload] };
+    case "REMOVE_FROM_WATCHLIST":
+      return {
+        ...state,
+        watchList: [...state.watchList].filter(
+          (movie) => movie.id !== action.payload
+        ),
+      };
     default:
       return state;
   }

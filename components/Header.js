@@ -6,6 +6,7 @@ import { useState } from "react";
 
 import Popover from "@mui/material/Popover";
 import { useCtrlContext } from "../hooks/useCtrlContext";
+import Link from "next/link";
 
 const Header = () => {
   //MUI POPOVER COMPONENT
@@ -68,28 +69,16 @@ const Header = () => {
             DISCOVER
           </li>
           {user && (
-            <div>
-              <li
+            
+              <Link href='/watchlist'
                 className="navBtn "
                 aria-describedby={id}
                 onClick={handleClick}
               >
                 WATCHLIST
-              </li>
-              <Popover
-                id={id}
-                open={open}
-                anchorEl={anchorEl}
-                onClose={handleClose}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
-                }}
-              >
-                <div className="mt-3"><><div>watch list movies</div>
-                <div>{watchList.map(movie=><p>{movie}</p>)}</div></></div>
-              </Popover>
-            </div>
+              </Link>
+              
+            
           )}
         </ul>
         {!user && (
