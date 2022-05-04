@@ -4,13 +4,21 @@ import Header from "../components/Header";
 import Modal from "../components/Modal";
 import Results from "../components/Results";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { useCollection } from "../hooks/useCollection";
 import { useCtrlContext } from "../hooks/useCtrlContext";
 
 export default function Watchlist() {
-  const { authIsReady } = useAuthContext();
-  const {watchList,showModal}=useCtrlContext()
-
-
+  const { authIsReady, user } = useAuthContext();
+  const { showModal } = useCtrlContext();
+  const { documents, error } = useCollection(
+    "watchlist",
+    ["uid", "==", user.uid],
+    ["createdAt", "desc"]
+  );
+  let watchlist = [];
+  if (documents) {
+    watchlist = documents.map((doc) => doc.movie);
+  }
   return (
     authIsReady && (
       <>
@@ -21,12 +29,18 @@ export default function Watchlist() {
             <link rel="icon" href="/favicon.ico" />
           </Head>
           <Header />
-          <Results results={watchList} />
+          {watchlist.length > 0 ? (
+            <Results results={watchlist} />
+          ) : (
+            <p className="h-full">
+              add movies to your watchlist and come back anytime to find them
+              here
+            </p>
+          )}
           <Footer />
         </div>
-         {showModal && <Modal />}
+        {showModal && <Modal />}
       </>
-      
     )
   );
 }

@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
-
+import "firebase/firestore";
+ 
 const firebaseConfig = {
   apiKey: "AIzaSyB2T7BMyFzmgBsVORWSk0JScCPIL_0xIwc",
   authDomain: "movex-c3bf2.firebaseapp.com",
@@ -17,7 +18,10 @@ if (firebase.apps.length === 0) {
 // firebase.initializeApp(firebaseConfig);
 
 //init service
-// const projectFirestore = firebase.firestore();
+const projectFirestore = firebase.firestore();
 const projectAuth = firebase.auth();
 
-export { projectAuth };
+//timestamp
+const timestamp=firebase.firestore.Timestamp
+
+export { projectAuth,projectFirestore ,timestamp};

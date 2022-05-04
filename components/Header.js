@@ -38,7 +38,6 @@ const Header = () => {
   };
 
   const { watchList } = useCtrlContext();
-  console.log(watchList);
   return (
     <header className="bg-neutral-900/70 h-12 m-2 rounded-md flex items-center pl-4 pr-5 md:pr-8">
       <h1

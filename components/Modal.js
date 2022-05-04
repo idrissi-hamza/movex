@@ -3,21 +3,44 @@ import { useCtrlContext } from "../hooks/useCtrlContext";
 import Image from "next/image";
 import { BookmarkIcon as BookmarkIconSolid } from "@heroicons/react/solid";
 import { BookmarkIcon as BookmarkIconOutline } from "@heroicons/react/outline";
+import { useFirestore } from "../hooks/useFirestore";
+import { useAuthContext } from "../hooks/useAuthContext";
+import { useCollection } from "../hooks/useCollection";
+
 const Modal = () => {
-  const { showModal, dispatch, movie, watchList } = useCtrlContext();
+  const { addDocument,deleteDocument, response } = useFirestore("watchlist");
+  const { user } = useAuthContext();
+
+  const { documents, error } = useCollection(
+    "watchlist",
+    ["uid", "==", user.uid],
+    ["createdAt", "desc"]
+  );
+
+  const { showModal, dispatch, movie } = useCtrlContext();
   const handleClose = () => dispatch({ type: "MODAL", payload: false });
 
-  const isInWatchlist = watchList.map((movie) => movie.id).includes(movie.id);
+  let isInWatchlist;
+  if (documents) {
+    isInWatchlist = documents.map((doc) => doc.movie.id).includes(movie.id);
+  }
+
+  // const isInWatchlist = true;
   const handleClick = () => {
-    !isInWatchlist
-      ? dispatch({
-          type: "ADD_TO_WATCHLIST",
-          payload: movie,
-        })
-      : dispatch({
-          type: "REMOVE_FROM_WATCHLIST",
-          payload: movie.id,
-        });
+    !isInWatchlist && addDocument({ uid: user.uid, movie });
+
+    // !isInWatchlist
+    //   ? dispatch({
+    //       type: "ADD_TO_WATCHLIST",
+    //       payload: movie,
+    //     })
+    //   : dispatch({
+    //       type: "REMOVE_FROM_WATCHLIST",
+    //       payload: movie.id,
+    //     });
+    // isInWatchlist
+    //   ? console.log("remove")
+    //   : console.log("add");
   };
 
   return (
@@ -37,7 +60,8 @@ const Modal = () => {
           >
             {!isInWatchlist && (
               <div className="flex items-center">
-                <BookmarkIconOutline className="w-5 h-5 mr-1 " /> Add to Watchlist
+                <BookmarkIconOutline className="w-5 h-5 mr-1 " /> Add to
+                Watchlist
               </div>
             )}
             {isInWatchlist && (
