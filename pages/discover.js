@@ -10,7 +10,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 
 export default function Discover({ results }) {
   const { showModal } = useCtrlContext();
-  const { authIsReady } = useAuthContext();
+  const { authIsReady, user } = useAuthContext();
 
   return (
     authIsReady && (
@@ -26,7 +26,7 @@ export default function Discover({ results }) {
           <Results results={results} />
           <Footer />
         </div>
-        {showModal && <Modal />}
+        {user && showModal && <Modal />}
       </>
     )
   );

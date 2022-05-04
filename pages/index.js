@@ -11,7 +11,7 @@ import { useCtrlContext } from "../hooks/useCtrlContext";
 
 export default function Home({ trending, topRated }) {
   const { showModal } = useCtrlContext();
-  const { authIsReady } = useAuthContext();
+  const { authIsReady,user } = useAuthContext();
   return (
     authIsReady && (
       <div className="  relative h-screen bg-gradient-to-b overflow-x-hidden">
@@ -32,7 +32,7 @@ export default function Home({ trending, topRated }) {
         <Plateforms />
        
         <Footer />
-        {showModal && <Modal />}
+        {user && showModal && <Modal />}
       </div>
     )
   );

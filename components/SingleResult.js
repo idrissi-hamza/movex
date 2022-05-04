@@ -13,9 +13,9 @@ const SingleResult = ({ result }) => {
   return (
     <div
       onClick={handleClick}
-      className="p-2 group cursor-pointer transition duration-200  transform sm:hover:scale-105 "
+      className="relative p-2 group cursor-pointer transition duration-200  transform sm:hover:scale-105 "
     >
-     
+      <div className={`absolute -top-1 right-3 opacity-0 group-hover:opacity-100 rounded-xl text-sm w-8 h-8 flex items-center justify-center z-10 ${result.vote_average>7?'bg-green-600':'bg-orange-500'} `}>{result.vote_average}</div>
       <Image
       className="relative"
         layout="responsive"
