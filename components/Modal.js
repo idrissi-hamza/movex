@@ -8,7 +8,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import { useCollection } from "../hooks/useCollection";
 
 const Modal = () => {
-  const { addDocument,deleteDocument, response } = useFirestore("watchlist");
+  const { addDocument, deleteDocument, response } = useFirestore("watchlist");
   const { user } = useAuthContext();
 
   const { documents, error } = useCollection(
@@ -27,7 +27,8 @@ const Modal = () => {
 
   // const isInWatchlist = true;
   const handleClick = () => {
-    !isInWatchlist && addDocument({ uid: user.uid, movie });
+    !isInWatchlist && addDocument({ uid: user.uid, mid: movie.id, movie });
+    isInWatchlist && deleteDocument(movie.id);
 
     // !isInWatchlist
     //   ? dispatch({

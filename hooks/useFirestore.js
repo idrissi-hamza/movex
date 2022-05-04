@@ -33,7 +33,7 @@ const firestoreReducer = (state, action) => {
         error: null,
         document: null,
       };
-      default:
+    default:
       return state;
   }
 };
@@ -69,24 +69,26 @@ export const useFirestore = (collection) => {
   };
 
   // delete a document
-  const deleteDocument = async (id) => {
+  const deleteDocument = async (mid) => {
     dispatch({ type: "IS_PENDING" });
-
+    console.log("pend dele");
     try {
-       await ref.doc(id).delete();
+      const querySnapshot = await ref.where("mid", "==", mid).get();
+
+      querySnapshot.forEach((doc) => doc.ref.delete());
+
+      // console.log("deleted", movieQuery);
       dispatchIfNotCancelled({
         type: "DELETED_DOCUMENT",
-        payload: deleteDocument,
       });
     } catch (err) {
       dispatchIfNotCancelled({ type: "ERROR", payload: "could not delete" });
     }
   };
-  
-  
+
   useEffect(() => {
     return () => setIsCancelled(true);
   }, []);
 
-  return { addDocument, deleteDocument,response };
+  return { addDocument, deleteDocument, response };
 };
