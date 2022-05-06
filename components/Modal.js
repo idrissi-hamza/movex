@@ -6,6 +6,8 @@ import { BookmarkIcon as BookmarkIconOutline } from "@heroicons/react/outline";
 import { useFirestore } from "../hooks/useFirestore";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useCollection } from "../hooks/useCollection";
+import BasicRating from "./BasicRating";
+import { XIcon } from "@heroicons/react/outline";
 
 const Modal = () => {
   const { addDocument, deleteDocument, response } = useFirestore("watchlist");
@@ -29,24 +31,13 @@ const Modal = () => {
   const handleClick = () => {
     !isInWatchlist && addDocument({ uid: user.uid, mid: movie.id, movie });
     isInWatchlist && deleteDocument(movie.id);
-
-    // !isInWatchlist
-    //   ? dispatch({
-    //       type: "ADD_TO_WATCHLIST",
-    //       payload: movie,
-    //     })
-    //   : dispatch({
-    //       type: "REMOVE_FROM_WATCHLIST",
-    //       payload: movie.id,
-    //     });
-    // isInWatchlist
-    //   ? console.log("remove")
-    //   : console.log("add");
   };
 
+  const rating = movie.vote_average / 2;
   return (
     <MuiModal open={showModal} onClose={handleClose}>
-      <div className=" grid grid-cols-3 bg-gray-300/90 w-full sm:w-1/2 py-5 pl-1 sm:pl-5  center sm:rounded-lg absolute ">
+      <div className=" grid grid-cols-3 bg-gray-300/90 w-full sm:w-1/2 py-5 pl-1 sm:pl-5  center sm:rounded-lg absolute relative  ">
+        <XIcon onClick={handleClose} className="w-6 h-6 absolute top-2 right-2 text-yellow-600 hover:bg-yellow-300 rounded" />
         <div className=" flex items-center flex-col">
           <Image
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -74,14 +65,15 @@ const Modal = () => {
           </button>
         </div>
         <div className=" text-gray-800 col-span-2 p-2  spacey-2">
-          <h1 className=" font-bold mb-3 text-xl ">
+          <h1 className=" font-bold mb-2 text-xl ">
             {movie.title || movie.original_name}
           </h1>
-          <p className="font-semibold">
+          <p className="font-semibold mb-2">
             {movie.release_date || movie.first_air_date}
           </p>
-          <p>{movie.overview}</p>
-          {/* <pre className="text-black">{JSON.stringify(movie,null,2)}</pre> */}
+          <BasicRating rating={rating} />
+          <p className="mt-2">{movie.overview}</p>
+          {/* <pre className="text-black">{JSON.stringify(movie, null, 2)}</pre> */}
         </div>
       </div>
     </MuiModal>
