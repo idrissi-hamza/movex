@@ -1,5 +1,5 @@
-import { getRedirectStatus } from "next/dist/lib/load-custom-routes";
 import Head from "next/head";
+import { useEffect } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Modal from "../components/Modal";
@@ -7,30 +7,32 @@ import Results from "../components/Results";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useCollection } from "../hooks/useCollection";
 import { useCtrlContext } from "../hooks/useCtrlContext";
+import Router from "next/router";
 
 export default function Watchlist() {
   const { authIsReady, user } = useAuthContext();
   const { showModal } = useCtrlContext();
-  
+
   const { documents, error } = useCollection(
-  "watchlist",
-  user && ["uid", "==", user.uid],
-  ["createdAt", "desc"]
+    "watchlist",
+    user && ["uid", "==", user.uid],
+    ["createdAt", "desc"]
   );
-  
+
+  useEffect(() => {
+    if (authIsReady && !user) Router.push("/login");
+  }, [user, authIsReady]);
+
   if (!user) {
-    return <div>Loading...</div>
-  } 
+    return <div>Loading...</div>;
+  }
 
-
-  
   let watchlist = [];
   if (user && documents) {
     watchlist = documents.map((doc) => doc.movie);
   }
- 
 
- return (
+  return (
     authIsReady && (
       <>
         <div className="h-screen">
@@ -40,14 +42,9 @@ export default function Watchlist() {
             <link rel="icon" href="/favicon.ico" />
           </Head>
           <Header />
-          {watchlist.length > 0 ? (
-            <Results results={watchlist} />
-          ) : (
-            <p className="h-full">
-              add movies to your watchlist and come back anytime to find them
-              here
-            </p>
-          )}
+          {watchlist.length > 0 && <Results results={watchlist} />}
+
+          <p>{error}</p>
           <Footer />
         </div>
         {showModal && <Modal />}

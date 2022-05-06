@@ -51,13 +51,13 @@ const Modal = () => {
             onClick={handleClick}
           >
             {!isInWatchlist && (
-              <div className="flex items-center">
+              <div className="flex items-center text-sm">
                 <BookmarkIconOutline className="w-5 h-5 mr-1 " /> Add to
                 Watchlist
               </div>
             )}
             {isInWatchlist && (
-              <div className="flex items-center">
+              <div className="flex items-center text-sm">
                 <BookmarkIconSolid className="w-5 h-5  mr-1" />
                 Added to Watchlist
               </div>
