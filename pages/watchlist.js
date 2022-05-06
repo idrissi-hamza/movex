@@ -1,3 +1,4 @@
+import { getRedirectStatus } from "next/dist/lib/load-custom-routes";
 import Head from "next/head";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -10,16 +11,26 @@ import { useCtrlContext } from "../hooks/useCtrlContext";
 export default function Watchlist() {
   const { authIsReady, user } = useAuthContext();
   const { showModal } = useCtrlContext();
+  
   const { documents, error } = useCollection(
-    "watchlist",
-    ["uid", "==", user.uid],
-    ["createdAt", "desc"]
+  "watchlist",
+  user && ["uid", "==", user.uid],
+  ["createdAt", "desc"]
   );
+  
+  if (!user) {
+    return <div>Loading...</div>
+  } 
+
+
+  
   let watchlist = [];
-  if (documents) {
+  if (user && documents) {
     watchlist = documents.map((doc) => doc.movie);
   }
-  return (
+ 
+
+ return (
     authIsReady && (
       <>
         <div className="h-screen">

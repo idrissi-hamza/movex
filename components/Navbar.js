@@ -16,8 +16,8 @@ const Navbar = () => {
           </h2>
         ))}
       </div>
-      <div className="absolute top-0 right-0 bg-gradient-to-l from-gray-800 h-full w-2/12 "/>
-      <div className="absolute top-0 left-0 bg-gradient-to-r from-gray-800 h-full w-2/12 "/>
+      <div className="absolute top-0 right-0 bg-gradient-to-l from-gray-800 h-full w-1/12 "/>
+      <div className="absolute top-0 left-0 bg-gradient-to-r from-gray-800 h-full w-1/12 "/>
     </nav>
   );
 };
