@@ -12,16 +12,18 @@ export default function Watchlist() {
   const { authIsReady, user } = useAuthContext();
   const { showModal } = useCtrlContext();
   
+  const { documents, error } = useCollection(
+  "watchlist",
+  user && ["uid", "==", user.uid],
+  ["createdAt", "desc"]
+  );
   
   if (!user) {
     return <div>Loading...</div>
-  }
+  } 
+
+
   
-  const { documents, error } = useCollection(
-    "watchlist",
-    ["uid", "==", user.uid],
-    ["createdAt", "desc"]
-  );
   let watchlist = [];
   if (user && documents) {
     watchlist = documents.map((doc) => doc.movie);
