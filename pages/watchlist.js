@@ -16,7 +16,7 @@ export default function Watchlist() {
     ["createdAt", "desc"]
   );
   let watchlist = [];
-  if (documents) {
+  if (user && documents) {
     watchlist = documents.map((doc) => doc.movie);
   }
   return (
