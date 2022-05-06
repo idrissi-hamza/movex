@@ -20,6 +20,7 @@ export default function Watchlist() {
     watchlist = documents.map((doc) => doc.movie);
   }
   return (
+    user &&
     authIsReady && (
       <>
         <div className="h-screen">
