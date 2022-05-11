@@ -14,7 +14,7 @@ const Banner = () => {
         <p className="text-xs md:text-lg lg:text-2xl">
           With Movex you can navigate over thousands of movies and shows.
           {!user && (
-            <span> What are you waiting for? Sign In to get full features.</span>
+            <span> What are you waiting for? Sign Up to get full features (Search, WatchList...).</span>
           )}
         </p>
       </div>

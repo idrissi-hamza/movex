@@ -10,15 +10,17 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import getConfig from "next/config";
 import { useState } from "react";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const { publicRuntimeConfig } = getConfig();
 
 const Search = () => {
   const { showModal } = useCtrlContext();
+  const { user } = useAuthContext();
   const [movies, setMovies] = useState([]);
   const router = useRouter();
   // const [query, setQuery] = useState("");
- 
+
   // console.log(query);
   const { query } = router.query;
   useEffect(() => {
@@ -30,11 +32,11 @@ const Search = () => {
       setMovies(data.results);
       // setQuery(query);
     };
-    fetchData(); 
+    fetchData();
     console.log(movies);
-  }, [query,movies]);
+  }, [query, movies]);
 
-  return (
+  return user && (
     query && (
       <>
         <div className="h-screen">
@@ -56,7 +58,7 @@ const Search = () => {
         {showModal && <Modal />}
       </>
     )
-  );
+  )
 };
 
 export default Search;

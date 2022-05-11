@@ -34,7 +34,7 @@ const Header = () => {
 
   const search = (e) => {
     e.preventDefault();
-    router.push(`/search/movie?query=${searchTerm}`);
+    user && router.push(`/search/movie?query=${searchTerm}`);
     setSearchTerm("");
   };
 
