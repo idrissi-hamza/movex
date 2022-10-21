@@ -31,7 +31,7 @@ const Thumbnail = ({ movie }) => {
           movie.vote_average > 7 ? "bg-green-600" : "bg-orange-500"
         } `}
       >
-        {movie.vote_average.toFixed(2)}
+        {movie.vote_average.toFixed(0)}
       </div>
     </div>
   );

@@ -21,7 +21,7 @@ const SingleResult = ({ result }) => {
           result.vote_average > 7 ? "bg-green-600" : "bg-orange-500"
         } `}
       >
-        {result.vote_average.toFixed(2)}
+        {result.vote_average.toFixed(0)}
       </div>
       <Image
         className="relative"
