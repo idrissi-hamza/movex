@@ -32,7 +32,7 @@ export default function Home({ trending, topRated }) {
         <Plateforms />
        
         <Footer />
-        {user && showModal && <Modal />}
+        { showModal && <Modal />}
       </div>
     )
   );

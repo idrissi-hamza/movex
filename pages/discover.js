@@ -26,7 +26,7 @@ export default function Discover({ results }) {
           <Results results={results} />
           <Footer />
         </div>
-        {user && showModal && <Modal />}
+        { showModal && <Modal />}
       </>
     )
   );

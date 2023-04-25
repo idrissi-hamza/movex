@@ -8,7 +8,7 @@ const Row = ({ title, results }) => {
         {title}
       </h2>
       <div className=" ml-8 flex space-x-1 overflow-x-scroll scrollbar-thin 
-      scrollbar-thumb-transparent hover:scrollbar-thumb-yellow-400 scrollbar-track-transparent   md:space-x-2.5 md:p-2">
+      scrollbar-thumb-transparent hover:scrollbar-thumb-yellow-400 scrollbar-track-transparent   md:space-x-2.5 md:p-2 ">
         {results.map((movie) => (
           <Thumbnail key={movie.id} movie={movie} />
         ))}

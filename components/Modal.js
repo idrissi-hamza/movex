@@ -15,7 +15,7 @@ const Modal = () => {
 
   const { documents, error } = useCollection(
     "watchlist",
-    ["uid", "==", user.uid],
+    user && ["uid", "==", user.uid],
     ["createdAt", "desc"]
   );
 
@@ -46,7 +46,7 @@ const Modal = () => {
             height={300}
             alt="movie poster"
           />
-          <button
+         {user && <button
             className="flex items-center justify-center bg-yellow-400/50 hover:bg-yellow-500/70 active:bg-yellow-600 px-3 py-1 cursor-pointer rounded-md text-yellow-900 mt-4"
             onClick={handleClick}
           >
@@ -62,7 +62,7 @@ const Modal = () => {
                 Added to Watchlist
               </div>
             )}
-          </button>
+          </button>}
         </div>
         <div className=" text-gray-800 col-span-2 p-2  spacey-2">
           <h1 className=" font-bold mb-2 text-xl ">
