@@ -36,7 +36,7 @@ const Search = () => {
     console.log(movies);
   }, [query, movies]);
 
-  return user && (
+  return  (
     query && (
       <>
         <div className="h-screen">
