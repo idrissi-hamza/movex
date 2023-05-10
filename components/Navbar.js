@@ -4,7 +4,7 @@ import requests from "../utils/requests";
 const Navbar = () => {
   const router=useRouter()
   return (
-    <nav className="relative mt-10">
+    <nav className="relative mt-10 ">
       <div className="flex  px-10 sm:px-20 text-xl whitespace-nowrap space-x-10 sm:space-x-20 overflow-x-scroll scrollbar-hide ">
         {Object.entries(requests).map(([key, { title, url }]) => (
           <h2
